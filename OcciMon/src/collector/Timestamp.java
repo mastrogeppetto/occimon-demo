@@ -19,5 +19,4 @@ public class Timestamp {
 		df.setTimeZone(tz);
 		System.out.println("Timestamping has been configured");
 	}
-	
 }
