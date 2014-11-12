@@ -2,8 +2,9 @@ package collector;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.TimeZone;
+
+// Useful since DateFormat is not thread safe
 
 public class Timestamp {
 	
@@ -19,13 +20,4 @@ public class Timestamp {
 		System.out.println("Timestamping has been configured");
 	}
 	
-	public String get() {
-		try {
-		return df.format(new Date());
-		} catch ( Exception e ) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 }
