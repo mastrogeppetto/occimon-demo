@@ -28,12 +28,14 @@ public class MetricContainer  extends UnicastRemoteObject implements MetricConta
 	// To refine (this should be a parameter)
 	private static String myId;
 	private static String registry;
+	static Timestamp timestamp;
 
 	protected MetricContainer() throws RemoteException {
 		super();
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+		timestamp = new Timestamp();
 		if ( args.length < 2) {
 			System.out.println("Usage: MetricContainer <id> <registry>");
 			System.exit(1);
@@ -68,7 +70,7 @@ public class MetricContainer  extends UnicastRemoteObject implements MetricConta
 		
 		while ( retry < MAXRETRY ) {
 			try ( Socket outSocket = new Socket(sensorIP, sensorPort) ) {
-				List<Future<Object>> exitcodes = launchMetrics(descr, outSocket);
+				List<Future<Object>> exitcodes = launchMetrics(descr, outSocket, timestamp);
 				System.out.println("Collector finished");
 				return null;
 			} catch (IOException e) {
@@ -81,7 +83,7 @@ public class MetricContainer  extends UnicastRemoteObject implements MetricConta
 		return null;
 	}
 	
-	private static List<Future<Object>> launchMetrics(JSONObject descr, Socket outSocket)
+	private static List<Future<Object>> launchMetrics(JSONObject descr, Socket outSocket, Timestamp timestamp2)
 			throws IOException, ParseException, InstantiationException,
 			IllegalAccessException, InterruptedException {
 		PrintWriter channel = 
