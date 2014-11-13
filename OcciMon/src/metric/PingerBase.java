@@ -58,7 +58,7 @@ public class PingerBase implements MetricMixin {
 				byte[] buf = new byte[1024];
 				buf = str.getBytes();
 				DatagramPacket ping = new DatagramPacket(buf, buf.length, address, port);
-				rttMeasure.put("timestamp", Timestamp.df.format(new Date()));
+				rttMeasure.put("timestamp", Timestamp.generate());
 				socket.send(ping);
 				try {
 					socket.setSoTimeout(maxDelay);
