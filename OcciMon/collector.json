@@ -1,0 +1,33 @@
+{
+   "id": "urn:uuid:23456789-def0",
+   "kind": "http://schemas.ogf.org/occi/monitoring#collector",
+   "mixins": [
+      "http://example.com/occi/monitoring/metric#CPUPercent"
+   ],
+   "attributes": {
+      "occi": {
+          "collector": {
+          "period": 5
+          }
+      },
+      "com": {
+         "example": {
+            "occi": {
+               "monitoring": {
+                  "CPUPercent" : {
+                     "out": "a"
+                  },     
+                  "IsReachable" : {
+                     "out": "b",
+                     "hostname": "www.google.com",
+                     "maxdelay": 1000
+                  }
+               }
+            } 
+         }
+      }
+   },
+   "actions": [],
+   "target":"/sensor/1111",
+   "source":"/compute/2222"
+ }

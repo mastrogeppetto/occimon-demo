@@ -1,0 +1,69 @@
+{
+  "resources": [
+    {
+      "id": "urn:uuid:1111",
+      "kind": "http://schemas.ogf.org/occi/monitoring#sensor",
+      "mixins": [
+        "http://example.com/occi/monitoring/publisher#EmailOnAlarm",
+        "http://example.com/occi/monitoring/aggregator#EWMA"
+      ],
+      "attributes": {
+        "occi": {
+          "sensor": {"period": 60,"timebase": 1386925386,"timestart": 600,"timestop": 3600, "IPAddress": "127.0.0.1", "port" 5011}
+          },
+        "com": {
+          "example": {
+            "occi": {
+              "monitoring": {
+                "EmailAlarm" : {"threshold": 80,"email": "myself@example.com","input": "c"},
+                "EWMA" : {"gain": 16,"instream": "a","outstream": "c"},
+                "Log" : {"filename": "my/log/file","in_msg": "b"}
+              }
+            }
+          }
+        }
+      }
+    },
+    { 
+      "id": "urn:uuid:2222",
+      "kind": "http://schemas.ogf.org/occi/infrastructure#compute",
+      "mixins": [
+      		"http.//schemas.ogf.org/infrastructure/compute#RMIMetricContainer"
+		],
+      "attributes": { "occi": { "compute": 
+      		    { "speed": 2, "memory": 4, "cores": 2,
+		      "MetricContainerIPAddress": "127.0.0.1",
+		      "MetricContainerPort": 12312 }}},
+      "actions": []
+    }
+    ],
+  "links": [
+    {
+      "id": "urn:uuid:23456789-def0",
+      "kind": "http://schemas.ogf.org/occi/monitoring#collector",
+      "mixins": [
+        "http://example.com/occi/monitoring/metric#CPUPercent"
+      ],
+      "attributes": {
+        "occi": {
+          "collector": {
+            "period": 3
+            }
+          },
+        "com": {
+          "example": {
+            "occi": {
+              "monitoring": {
+                "CPUPercent" : {"out": "a"},    
+                "IsReachable" : {"hostname": "www.google.com","maxdelay": 1000,"out":"b"}
+              }
+            }
+          }
+        }
+      },
+      "actions": [],
+      "target":"urn:uuid:1111",
+      "source":"urn:uuid:2222"
+      }
+    ]
+  }
