@@ -3,4 +3,4 @@ OCCI monitoring in action: turns OCCI documents based on the OCCI doc into a wor
 
 This repository is produced from an Eclipse IDE project, and it should be easy to clone it inside Eclipse.
 
-For a live demonstration based on a VirtualBox testbed go to page https://sites.google.com/site/occimonitoring/
+For a live demonstration based on a VirtualBox testbed go to page https://github.com/mastrogeppetto/occimon-live
